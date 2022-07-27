@@ -46,3 +46,15 @@ async function onClick() {
 ```
 ---
 Controll this in __chrome devtools__ > __Network__ (reload page and look in to `bundle.js` size)
+
+
+### Code Splitting Components 
+
+`import DrivingDirectionsMap from './DrivingDirectionsMap';`
+
+To split the DrivingDirectionsMap component into its own chunk, we can use React.lazy(), which has the following syntax:
+```
+const DrivingDirectionsMap = React.lazy(
+  () => import('./DrivingDirections)
+); 
+```
