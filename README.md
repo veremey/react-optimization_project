@@ -15,7 +15,7 @@ You may also see any lint errors in the console.
 
 Here we work with "Profiler" tab in react developers tools extansion and show how it works. 
 
-`useMemo` caches the result of a function call and only calls the function again when its dependencies change.
+`useMemo()` caches the result of a function call and only calls the function again when its dependencies change.
 
 * For checking component perfomance open "profiler" / "start record" make manipulations and "stop record" => look into graph
 
@@ -27,4 +27,6 @@ React will only shallowly compare the props of the memoized component before and
 
 * For checking wich component nead to be fixed open "profiler" / " ⚙ settings" / "✅ Highlight updates when components render." 
 
+-- 
 
+`useCallback( ()=>{}, [] )` - hook will only recreate the function if its list of dependencies changes
