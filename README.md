@@ -78,3 +78,14 @@ or insert a component as an argument of `fallback`
   <p>some text</p>
 </Suspense>
 ```
+
+## Review
+
+`useMemo()` memoizes a value.\
+`React.memo()` memoizes a component.\
+`useCallback()` memoizes a function.
+
+To split our code into chunks, we can use `import()` or `React.lazy()` and `<Suspense />`.
+
+`import()` can split a module into a chunk.\
+`React.lazy()` and `<Suspense />` can split a component into its own chunk, while also providing a loading state and allowing the rest of our app to load first.
