@@ -52,9 +52,29 @@ Controll this in __chrome devtools__ > __Network__ (reload page and look in to `
 
 `import DrivingDirectionsMap from './DrivingDirectionsMap';`
 
-To split the DrivingDirectionsMap component into its own chunk, we can use React.lazy(), which has the following syntax:
+To split the DrivingDirectionsMap component into its own chunk, we can use 'React.lazy()', which has the following syntax:
+
 ```
 const DrivingDirectionsMap = React.lazy(
   () => import('./DrivingDirections)
 ); 
+```
+
+
+### Suspense 
+
+React load the rest of our app first, then insert our lazily loaded component, we can use the `<Suspense>` component from React.
+
+The `<Suspense>` component instructs React to load every part of our app except the components imported with `React.lazy()`. While those components download, `<Suspense>` will show a loading state. Once the lazily loaded component is ready, `<Suspense>` will insert the component to our app.
+
+``` 
+<Suspense fallback={<p>Loading...</p>}>
+  <p>some text</p>
+</Suspense>
+```
+or insert a component as an argument of `fallback`
+```
+<Suspense fallback={<Loader/>}> 
+  <p>some text</p>
+</Suspense>
 ```
