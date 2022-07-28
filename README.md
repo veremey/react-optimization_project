@@ -13,7 +13,10 @@ Here we work with "__Profiler__" tab in react developers tools extansion and sho
 
 ### Memoizing Values
 
-`useMemo()` caches the result of a function call and only calls the function again when its dependencies change.
+`useMemo(() => {}, [])` caches the result of a function call and only calls the function again when its dependencies change.
+```
+const isPrime = useMemo(() => checkIfPrime(number), [number]); 
+```
 
 ---
 For checking component perfomance open "__profiler__" > "__start record__" make manipulations and "stop record" => look into the graph
@@ -25,6 +28,11 @@ For checking component perfomance open "__profiler__" > "__start record__" make 
 `React.memo()` is a higher-order component is a component that takes another component as an argument so that it can add functionality to it. In this case, React.memo() will only allow the component passed to it to re-render if its props have changed.
 
 React will only shallowly compare the props of the memoized component before and after each render. To ensure that complex values such as objects and arrays are deeply compared, we can provide a comparison function as the second argument to `React.memo()`
+```
+export const GraphPoint = React.memo(() => {
+  return <div />
+})
+```
 
 ---
 For checking wich component nead to be fixed open "profiler" > " ⚙ settings" > "✅ Highlight updates when components render." 
@@ -33,7 +41,11 @@ For checking wich component nead to be fixed open "profiler" > " ⚙ settings" >
 
 ### Memoizing Functions
 
-`useCallback( ()=>{}, [] )` - hook will only recreate the function if its list of dependencies changes
+`useCallback( ()=>{}, [] )` - hook will only recreate the function if its list of dependencies changes.\
+React provides the useCallback() hook to memoize functions. It takes two arguments, a function, and a list of dependencies. Given the same list of dependencies, useCallback() will return a memoized function.
+```
+const memoizedFunction = useCallback((number) => formatNumber(number), []);
+```
 
 ### Code Splitting Modules 
 
@@ -65,7 +77,7 @@ const DrivingDirectionsMap = React.lazy(
 
 React load the rest of our app first, then insert our lazily loaded component, we can use the `<Suspense>` component from React.
 
-The `<Suspense>` component instructs React to load every part of our app except the components imported with `React.lazy()`. While those components download, `<Suspense>` will show a loading state. Once the lazily loaded component is ready, `<Suspense>` will insert the component to our app.
+The `<Suspense>` __*component*__ instructs React to load every part of our app except the components imported with `React.lazy()`. While those components download, `<Suspense>` will show a loading state. Once the lazily loaded component is ready, `<Suspense>` will insert the component to our app.
 
 ``` 
 <Suspense fallback={<p>Loading...</p>}>
